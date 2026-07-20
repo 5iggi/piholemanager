@@ -39,8 +39,7 @@ Pi-hole Manager ist ein LoxBerry Plugin zur nativen Installation und Verwaltung 
 
 ### Dokumentation
 
-- [Dokumentationsstart](docs/README.md)
-- [Deutsch](docs/de/README.md)
+- [Übersicht](docs/de/README.md)
 - [Installation](docs/de/INSTALLATION.md)
 - [Upgrade](docs/de/UPGRADE.md)
 - [Benutzung](docs/de/USAGE.md)
@@ -75,8 +74,7 @@ Pi-hole Manager is a LoxBerry plugin to install and manage a native Pi-hole inst
 
 ### Documentation
 
-- [Documentation entry](docs/README.md)
-- [English](docs/en/README.md)
+- [Overview](docs/en/README.md)
 - [Installation](docs/en/INSTALLATION.md)
 - [Upgrade](docs/en/UPGRADE.md)
 - [Usage](docs/en/USAGE.md)
