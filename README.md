@@ -26,6 +26,7 @@ Pi-hole Manager ist ein LoxBerry Plugin zur nativen Installation und Verwaltung 
 ### Funktionen
 
 - Native Pi-hole Installation auf LoxBerry
+- Vorhandene lokale Pi-hole Installation wird erkannt und kann verwaltet werden
 - Unterstützung für Pi-hole v6 und pihole-FTL
 - Web-Port-Erkennung und Web-Port-Änderung
 - Passwortfunktion für das Pi-hole Webinterface
@@ -61,6 +62,7 @@ Pi-hole Manager is a LoxBerry plugin to install and manage a native Pi-hole inst
 ### Features
 
 - Native Pi-hole installation on LoxBerry
+- Existing local Pi-hole installations are detected and can be managed
 - Pi-hole v6 and pihole-FTL support
 - Web port detection and configuration
 - Password handling for the Pi-hole web interface
