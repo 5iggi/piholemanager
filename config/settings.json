@@ -1,0 +1,5 @@
+{
+  "plugin_version": "1.1.10",
+  "pihole_web_port": 8000,
+  "open_mode": "named_tab"
+}

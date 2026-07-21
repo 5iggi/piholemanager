@@ -1,0 +1,507 @@
+/* ========================================================================
+   Pi-hole Manager - LoxBerry 4 exact-aligned CSS
+   Basis: LoxBerry Classic Theme + components.css
+
+   Ziele:
+   - Exakte LoxBerry-Variablennamen verwenden, soweit vorhanden.
+   - Eigene phm-* Alias-Variablen nur als Brücke/Fallback.
+   - LoxBerry-Komponenten lb-card, lb-btn, lb-input nicht unnötig überschreiben.
+   - Datei-Input bleibt linksbündig: padding-left: 0 !important.
+
+   Struktur:
+   01 Theme Alias / Fallbacks
+   02 Base / Layout
+   03 Header / Plugin-Branding
+   04 Cards / Statusbereiche
+   05 Formulare / Eingaben
+   06 Buttons
+   07 dnsmasq.d Editor / Dateiliste
+   08 Badges / Statuslabels
+   09 Fallbacks für LoxBerry 3 / ohne LoxBerry DS
+   10 Responsive Anpassungen
+   ======================================================================== */
+
+/* ------------------------------------------------------------------------
+   01 Theme Alias / Fallbacks
+   ------------------------------------------------------------------------ */
+.phm-wrap {
+  --phm-font: var(--lb-font, sans-serif);
+  --phm-text: var(--lb-text, #333);
+  --phm-text-secondary: var(--lb-text-secondary, #555);
+  --phm-text-muted: var(--lb-text-muted, #aaa);
+
+  --phm-border-color: var(--lb-border-color, #ddd);
+  --phm-radius: var(--lb-radius, 4px);
+  --phm-radius-sm: var(--lb-radius-sm, 2px);
+
+  --phm-card-bg: var(--lb-card-bg, white);
+  --phm-card-border: var(--lb-card-border, 1px solid #ddd);
+  --phm-card-shadow: var(--lb-card-shadow, none);
+
+  --phm-btn-bg: var(--lb-btn-bg, #fff);
+  --phm-btn-hover-bg: var(--lb-btn-hover-bg, #dcdcdc);
+  --phm-btn-text: var(--lb-btn-text, #444);
+  --phm-btn-border: var(--lb-btn-border, #c0c0c0);
+  --phm-btn-radius: var(--lb-btn-radius, 4px);
+
+  --phm-primary-bg: var(--lb-btn-primary-bg, var(--lb-primary, #6dac20));
+  --phm-primary-hover-bg: var(--lb-primary-hover, #5a9a1a);
+  --phm-primary-text: var(--lb-btn-primary-text, white);
+  --phm-primary-border: var(--lb-btn-primary-border, #5a9a1a);
+
+  --phm-danger-bg: var(--lb-danger, #dc2626);
+  --phm-danger-hover-bg: var(--lb-danger-hover, #b91c1c);
+  --phm-danger-border: var(--lb-danger, #dc2626);
+
+  --phm-input-bg: var(--lb-input-bg, white);
+  --phm-input-border: var(--lb-input-border, #ddd);
+  --phm-input-text: var(--lb-input-text, #333);
+
+  --phm-focus-ring: rgba(109, 172, 32, .15);
+  --phm-success-bg: rgba(109, 172, 32, .12);
+  --phm-success-text: #2f6f10;
+  --phm-muted-bg: #f1f5f9;
+}
+
+/* ------------------------------------------------------------------------
+   02 Base / Layout
+   ------------------------------------------------------------------------ */
+.phm-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: .75rem;
+  color: var(--phm-text);
+  font-family: var(--phm-font);
+}
+
+.phm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.phm-small {
+  font-size: .9em;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.phm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  align-items: center;
+}
+
+/* ------------------------------------------------------------------------
+   03 Header / Plugin-Branding
+   ------------------------------------------------------------------------ */
+.phm-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: .3rem 0 1.25rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--phm-primary-bg);
+}
+
+.phm-brand-icon {
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.phm-brand-text h2 {
+  margin: .1rem 0 .35rem 0;
+  color: var(--phm-text);
+}
+
+.phm-subtitle {
+  margin: 0;
+  color: var(--phm-text-muted);
+}
+
+/* ------------------------------------------------------------------------
+   04 Cards / Statusbereiche
+   ------------------------------------------------------------------------ */
+.phm-card {
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.phm-card dl {
+  margin: .25rem 0;
+}
+
+.phm-card dt {
+  font-weight: 600;
+  margin-top: .45rem;
+  color: var(--phm-text);
+}
+
+.phm-card dd {
+  margin: .15rem 0 .45rem 0;
+}
+
+.phm-local-status {
+  display: none;
+  margin: .75rem 0;
+  padding: .75rem;
+  border: 1px solid var(--phm-border-color);
+  border-radius: var(--phm-radius);
+  background: var(--phm-card-bg);
+  color: var(--phm-text);
+}
+
+.phm-local-status pre {
+  white-space: pre-wrap;
+}
+
+/* ------------------------------------------------------------------------
+   05 Formulare / Eingaben
+   ------------------------------------------------------------------------ */
+.phm-config-card {
+  margin-top: 1rem;
+}
+
+.phm-config-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(220px, .8fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.phm-config-col {
+  min-width: 0;
+}
+
+.phm-config-col .phm-input {
+  width: 100% !important;
+  max-width: 32rem !important;
+}
+
+.phm-config-col input[name="web_port"] {
+  max-width: 14rem !important;
+  margin-right: 20px;
+}
+
+.phm-textarea {
+  width: 100%;
+  max-width: 48rem;
+  min-height: 16rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+input.lb-input.phm-input {
+  margin-bottom: 10px;
+}
+
+/* Datei-Input bewusst linksbündig. Nicht entfernen. */
+input[type="file"].lb-input.phm-input,
+input[name="conf_upload"][data-role="none"] {
+  border: none!important;
+  padding-left: 0 !important;
+}
+
+
+.phm-wrap input[type="file"].phm-input {
+  height: auto !important;
+  padding-top: .35rem !important;
+  padding-right: .55rem !important;
+  padding-bottom: .35rem !important;
+  padding-left: 0 !important;
+}
+
+.phm-wrap input[type="file"].phm-input::file-selector-button {
+  appearance: none;
+  margin: 0 .75rem 0 0;
+  padding: .55em .9em;
+  border: 1px solid var(--phm-btn-border);
+  border-radius: var(--phm-btn-radius);
+  background: var(--phm-btn-bg);
+  color: var(--phm-btn-text);
+  font-family: var(--phm-font);
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.phm-wrap input[type="file"].phm-input::file-selector-button:hover {
+  background: var(--phm-btn-hover-bg);
+  border-color: var(--phm-text-secondary);
+}
+
+/* WebKit-Fallback für ältere Browser */
+.phm-wrap input[type="file"].phm-input::-webkit-file-upload-button {
+  appearance: none;
+  margin: 0 .75rem 0 0;
+  padding: .55em .9em;
+  border: 1px solid var(--phm-btn-border);
+  border-radius: var(--phm-btn-radius);
+  background: var(--phm-btn-bg);
+  color: var(--phm-btn-text);
+  font-family: var(--phm-font);
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------------
+   06 Buttons
+   ------------------------------------------------------------------------ */
+.phm-button {
+  width: auto;
+  margin: .5em .625em .5em 0;
+}
+
+.phm-wrap button,
+.phm-wrap input[type="button"],
+.phm-wrap input[type="submit"],
+.phm-wrap .phm-button {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 10rem !important;
+  margin: .5em .625em .5em 0 !important;
+  padding: .55em .9em !important;
+  border: 1px solid var(--phm-btn-border) !important;
+  border-radius: var(--phm-btn-radius) !important;
+  background: var(--phm-btn-bg) !important;
+  color: var(--phm-btn-text);
+  font-family: var(--phm-font) !important;
+  font-weight: normal !important;
+  line-height: 1.3 !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transition: background .15s ease, border-color .15s ease, color .15s ease !important;
+}
+
+.phm-wrap button:hover,
+.phm-wrap input[type="button"]:hover,
+.phm-wrap input[type="submit"]:hover,
+.phm-wrap .phm-button:hover {
+  background: var(--phm-btn-hover-bg) !important;
+  border-color: var(--phm-text-secondary) !important;
+/*  color: var(--phm-btn-text) !important; */
+  box-shadow: none !important;
+}
+
+.phm-wrap button:focus,
+.phm-wrap input[type="button"]:focus,
+.phm-wrap input[type="submit"]:focus,
+.phm-wrap .phm-button:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px var(--phm-focus-ring) !important;
+}
+
+.phm-wrap .phm-primary,
+.phm-wrap .lb-btn-primary {
+  background: var(--phm-primary-bg) !important;
+  border-color: var(--phm-primary-border) !important;
+  color: var(--phm-primary-text) !important;
+  font-weight: 500 !important;
+}
+
+.phm-wrap .phm-primary:hover,
+.phm-wrap .lb-btn-primary:hover {
+  background: var(--phm-primary-hover-bg) !important;
+  border-color: var(--phm-primary-border) !important;
+  color: var(--phm-primary-text) !important;
+}
+
+.phm-wrap .phm-danger,
+.phm-wrap .lb-btn-danger {
+  background: var(--phm-danger-bg) !important;
+  border-color: var(--phm-danger-border) !important;
+  color: white !important;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .2) !important;
+}
+
+.phm-wrap .phm-danger:hover,
+.phm-wrap .lb-btn-danger:hover,
+button.lb-btn.lb-btn-danger.phm-button.phm-danger.phm-action:hover {
+  background: var(--phm-danger-hover-bg) !important;
+  border-color: var(--phm-danger-border) !important;
+  color: white !important;
+}
+
+/* ------------------------------------------------------------------------
+   07 dnsmasq.d Editor / Dateiliste
+   ------------------------------------------------------------------------ */
+.phm-filelist {
+  columns: 2;
+  margin: .5rem 0;
+}
+
+.phm-filelink {
+  cursor: pointer;
+  color: var(--phm-primary-bg) !important;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+}
+
+.phm-filelink:hover {
+  color: var(--phm-primary-hover-bg);
+}
+
+#conf-list.phm-filelist ul,
+#conf-list.phm-filelist li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#conf-list.phm-filelist button.phm-filelink,
+#conf-list.phm-filelist button[data-role="none"] {
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  vertical-align: top;
+  padding: .13rem .3rem !important;
+}
+
+#conf-list.phm-filelist button[data-role="none"]:not(:active):not(:focus) {
+  border: none !important;
+  color: var(--phm-primary-bg) !important;
+}
+
+div#conf-list {
+    width: max-content;
+}
+
+/* ------------------------------------------------------------------------
+   08 Badges / Statuslabels
+   ------------------------------------------------------------------------ */
+.badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: .15rem .55rem;
+  font-size: .9em;
+  font-weight: 600;
+}
+
+.badge.on {
+  background: var(--phm-success-bg);
+  color: var(--phm-success-text);
+}
+
+.badge.off {
+  background: var(--phm-muted-bg);
+  color: var(--phm-text-secondary);
+}
+
+.pid {
+  margin-left: .4rem;
+  color: var(--phm-text-muted);
+  font-size: .9em;
+}
+
+/* ------------------------------------------------------------------------
+   09 Fallbacks für LoxBerry 3 / ohne LoxBerry DS
+   ------------------------------------------------------------------------ */
+.phm-wrap.phm-fallback .phm-card {
+  padding: 1rem;
+  border: var(--phm-card-border);
+  border-radius: var(--phm-radius);
+  background: var(--phm-card-bg);
+  box-shadow: var(--phm-card-shadow);
+}
+
+.phm-wrap.phm-fallback .phm-input,
+.phm-wrap.phm-fallback .phm-textarea {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 48rem !important;
+  box-sizing: border-box !important;
+  margin: .25rem 0 .65rem 0 !important;
+  padding: 10px 14px !important;
+  border: 1px solid var(--phm-input-border) !important;
+  border-radius: var(--phm-radius) !important;
+  background: var(--phm-input-bg) !important;
+  color: var(--phm-input-text) !important;
+  box-shadow: none !important;
+}
+
+.phm-wrap.phm-fallback .phm-input:focus,
+.phm-wrap.phm-fallback .phm-textarea:focus {
+  outline: none !important;
+  border-color: var(--phm-primary-bg) !important;
+  box-shadow: 0 0 0 3px var(--phm-focus-ring) !important;
+}
+
+/* ------------------------------------------------------------------------
+   10 Responsive Anpassungen
+   ------------------------------------------------------------------------ */
+@media (max-width: 760px) {
+  .phm-brand {
+    align-items: flex-start;
+  }
+
+  .phm-brand-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .phm-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .phm-config-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .phm-config-col input[name="web_port"] {
+    max-width: 100% !important;
+  }
+
+  .phm-filelist {
+    columns: 1;
+  }
+
+  .phm-wrap.phm-fallback .phm-button {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   12 Button Icons / Abstand zur Beschriftung
+   ------------------------------------------------------------------------
+   LoxBerry v4 / PrimeIcons: Icons stehen als <i class="pi ..."></i>
+   direkt vor dem Buttontext. Diese Regeln erzwingen einen sauberen Abstand.
+   ------------------------------------------------------------------------ */
+.phm-wrap button,
+.phm-wrap input[type="button"],
+.phm-wrap input[type="submit"],
+.phm-wrap .phm-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .45em !important;
+}
+
+.phm-wrap .phm-button .pi,
+.phm-wrap .phm-action .pi,
+.phm-wrap button .pi,
+.phm-wrap a.phm-button .pi,
+.phm-wrap #install-btn .pi,
+.phm-wrap #open-pihole .pi {
+  display: inline-block !important;
+  flex: 0 0 auto !important;
+  margin-right: 0 !important;
+  line-height: 1 !important;
+  vertical-align: -0.08em !important;
+}
+
+button.lb-btn.phm-button.phm-action {
+  margin-top: 0 !important;
+}
+

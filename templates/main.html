@@ -1,0 +1,105 @@
+<div class="lb-content phm-wrap phm-fallback">
+  <div class="phm-brand">
+    <img class="phm-brand-icon" src="{{PLUGIN_ICON_URI}}" style="{{PLUGIN_ICON_STYLE}}" alt="{{APP.TITLE}}">
+    <div class="phm-brand-text">
+      <h2>{{APP.TITLE}}</h2>
+      <p class="phm-subtitle">{{APP.SUBTITLE}}</p>
+    </div>
+  </div>
+
+  <div class="phm-grid">
+    <section class="lb-card phm-card">
+      <h3>{{STATUS.PIHOLE}}</h3>
+      <dl>
+        <dt>{{STATUS.STATUS}}</dt><dd id="st-installed">{{INSTALLED_BADGE}}</dd>
+        <dt>{{STATUS.FTL}}</dt><dd id="st-ftl">{{FTL_HTML}}</dd>
+        <dt>{{STATUS.VERSIONS}}</dt><dd id="st-ver" class="phm-small">{{VERSIONS_HTML}}</dd>
+        <dt>{{STATUS.GRAVITY}}</dt><dd id="st-gravity">{{GRAVITY_BADGE}}</dd>
+      </dl>
+    </section>
+
+    <section class="lb-card phm-card">
+      <h3>{{STATUS.WEBINTERFACE}}</h3>
+      <dl>
+        <dt>{{STATUS.CURRENT_PORT}}</dt><dd id="st-port">{{WEB_PORT}}</dd>
+        <dt>{{STATUS.TARGET_PORT}}</dt><dd id="st-target">{{TARGET_PORT}}</dd>
+      </dl>
+      <a id="open-pihole" class="lb-btn lb-btn-primary phm-button phm-primary" target="piholemanager_pihole" href="{{PIHOLE_URL}}" style="{{OPEN_STYLE}}"><i class="pi pi-external-link"></i>{{STATUS.OPEN_PIHOLE}}</a>
+    </section>
+
+    <section class="lb-card phm-card">
+      <h3>{{STATUS.DNS_DHCP}}</h3>
+      <dl>
+        <dt>{{STATUS.DHCP_SERVER}}</dt><dd id="st-dhcp">{{DHCP_BADGE}}</dd>
+        <dt>{{STATUS.DNSMASQ_D}}</dt><dd id="st-dnsmasq">{{DNSMASQ_BADGE}}</dd>
+      </dl>
+    </section>
+  </div>
+
+  <section id="install-card" class="lb-card phm-card" style="{{INSTALL_STYLE}}">
+    <h3>{{INSTALL.TITLE}}</h3>
+    <p>{{INSTALL.TEXT}}</p>
+    <button id="install-btn" type="button" data-role="none" class="lb-btn lb-btn-primary phm-button phm-primary"><i class="pi pi-check"></i>{{INSTALL.START}}</button>
+    <a class="lb-btn phm-button" target="piholemanager_log" href="{{INSTALL_LOG_URL}}"><i class="pi pi-file"></i>{{INSTALL.LOG}}</a>
+    <div id="install-status" class="phm-local-status"></div>
+  </section>
+
+  <section class="lb-card phm-card phm-config-card">
+    <h3>{{ACTIONS.CONFIG_TITLE}}</h3>
+    <div class="phm-config-grid">
+      <div class="phm-config-col">
+        <h4>{{ACTIONS.PASSWORD_TITLE}}</h4>
+        <div data-box="pw-status">
+          <input type="hidden" name="action" value="set_password">
+          <input data-role="none" name="pihole_password" type="password" placeholder="{{ACTIONS.NEW_PASSWORD}}" class="lb-input phm-input">
+          <input data-role="none" name="pihole_password_confirm" type="password" placeholder="{{ACTIONS.CONFIRM_PASSWORD}}" class="lb-input phm-input">
+          <button type="button" data-role="none" class="lb-btn lb-btn-primary phm-button phm-primary phm-action" data-action="set_password"><i class="pi pi-check"></i>{{ACTIONS.SET_PASSWORD}}</button>
+        </div>
+        <div id="pw-status" class="phm-local-status"></div>
+      </div>
+
+      <div class="phm-config-col">
+        <h4>{{ACTIONS.PORT_TITLE}}</h4>
+        <div data-box="port-status">
+          <input type="hidden" name="action" value="set_port">
+          <input data-role="none" name="web_port" value="{{PORT_FIELD}}" class="lb-input phm-input">
+          <button type="button" data-role="none" class="lb-btn phm-button phm-action" data-action="set_port"><i class="pi pi-check"></i>{{ACTIONS.SET_PORT}}</button>
+        </div>
+        <div id="port-status" class="phm-local-status"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lb-card phm-card">
+    <h3>{{DNSMASQ.TITLE}}</h3>
+    <p>{{DNSMASQ.TEXT}}</p>
+    <div id="conf-list" class="phm-filelist">{{CONF_LIST}}</div>
+    <input type="hidden" id="conf-current" name="conf_file" value="">
+    <textarea id="conf-editor" class="lb-input phm-textarea" placeholder=".conf"></textarea>
+    <div data-box="dnsmasq-status">
+      <button type="button" data-role="none" class="lb-btn phm-button phm-action" data-action="conf_save"><i class="pi pi-check"></i>{{DNSMASQ.SAVE}}</button>
+      <button type="button" data-role="none" class="lb-btn lb-btn-danger phm-button phm-danger phm-action" data-action="conf_delete"><i class="pi pi-trash"></i>{{DNSMASQ.DELETE}}</button>
+      <button type="button" data-role="none" class="lb-btn phm-button phm-action" data-action="syntax_test"><i class="pi pi-check"></i>{{DNSMASQ.SYNTAX}}</button>
+      <button type="button" data-role="none" class="lb-btn phm-button phm-action" data-action="template_custom"><i class="pi pi-file"></i>{{DNSMASQ.CUSTOM}}</button>
+    </div>
+    <h4>{{DNSMASQ.UPLOAD}}</h4>
+    <div data-box="dnsmasq-status">
+      <input data-role="none" name="upload_target" class="lb-input phm-input" placeholder="custom.conf">
+      <input data-role="none" name="conf_upload" type="file" class="lb-input phm-input">
+      <button type="button" data-role="none" class="lb-btn phm-button phm-action" data-action="conf_upload"><i class="pi pi-upload"></i>{{DNSMASQ.UPLOAD}}</button>
+    </div>
+    <div id="dnsmasq-status" class="phm-local-status"></div>
+  </section>
+
+  <section class="lb-card phm-card">
+    <h3>{{ACTIONS.ACTIONS_TITLE}}</h3>
+    <div class="phm-actions">
+      <button type="button" data-role="none" data-box="actions-status" class="lb-btn phm-button phm-action" data-action="backup"><i class="pi pi-save"></i>{{ACTIONS.BACKUP}}</button>
+      <button type="button" data-role="none" data-box="actions-status" class="lb-btn phm-button phm-action" data-action="healthcheck"><i class="pi pi-check"></i>{{ACTIONS.HEALTHCHECK}}</button>
+      <button type="button" data-role="none" data-box="actions-status" class="lb-btn phm-button phm-action" data-action="enable_dnsmasq_d"><i class="pi pi-check"></i>{{ACTIONS.ENABLE_DNSMASQ}}</button>
+      <button type="button" data-role="none" data-box="actions-status" class="lb-btn phm-button phm-action" data-action="restart_ftl"><i class="pi pi-refresh"></i>{{ACTIONS.RESTART_FTL}}</button>
+    </div>
+    <div id="actions-status" class="phm-local-status"></div>
+    <p><a class="lb-btn phm-button" target="piholemanager_log" href="{{ACTIONS_LOG_URL}}"><i class="pi pi-file"></i>{{ACTIONS.ACTIONS_LOG}}</a></p>
+  </section>
+</div>
